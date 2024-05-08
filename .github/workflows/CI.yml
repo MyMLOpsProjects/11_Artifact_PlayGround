@@ -43,8 +43,8 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: my-demo-artifacts
-        path: ./demo.txt
+        path: .
     - name: Read demo.txt
-      run: cat ./demo.txt
+      run: cat demo.txt
         
     
