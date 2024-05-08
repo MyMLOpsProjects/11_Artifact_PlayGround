@@ -22,27 +22,27 @@ jobs:
       run: black ./code_files/*.py
     - name: Run demo file
       run: python ./code_files/demo.py
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: my-demo-artifacts
         path: ./*.txt
         retention-days: 1
   
-  # Read-Artifcat:
-  #   needs: [format-and-run]
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     fail-fast: false
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: Set up Python 3.10
-  #     uses: actions/setup-python@v3
-  #     with:
-  #       python-version: '3.10'
-  #   - name:  read-artifcat-file
-  #     uses: actions/download-artifact@v2
-  #     with:
-  #       name: my-demo-artifacts
-  #       path: artifact
-  #       run: python artifact/demo.txt
+  Read-Artifcat:
+    needs: [format-and-run]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+    - name:  read-artifcat-file
+      uses: actions/download-artifact@v4
+      with:
+        name: my-demo-artifacts
+        path: ./demo.txt
+        run: cat ./demo.txt
     
