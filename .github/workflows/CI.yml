@@ -39,10 +39,12 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.10'
-    - name:  read-artifcat-file
+    - name:  download-artifcat-file
       uses: actions/download-artifact@v4
       with:
         name: my-demo-artifacts
         path: ./demo.txt
-        run: cat ./demo.txt
+    - name: Read demo.txt
+      run: cat ./demo.txt
+        
     
